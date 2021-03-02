@@ -9,6 +9,6 @@ Avoid being bottlenecked in the system, redis (be like memcached) is used to cre
  - Run serial files: worker1.py -> worker_master.py -> work2.py -> worker3.py.
 
 ### Explain
- - **worker_master**: has a Queue to aim storage from worker1 and distribute product to worker2 , worker3, ... 
+ - **worker_master**: has a Queue to aim storage products from worker1 and distribute them to worker2 , worker3, ... 
  - **worker1**: push product to the Queue in worker master.
  - **worker2**, **worker3**: aim to avoid being bottlenecked, you can create more. 
