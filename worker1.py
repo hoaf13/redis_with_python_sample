@@ -1,5 +1,6 @@
 import redis 
 import time 
+import json
 
 red = redis.StrictRedis(host='localhost',
                         port=6379,
@@ -19,8 +20,12 @@ while True:
         red.set('is_new_product', str(False))
     is_used = not str2bool(red.get('is_new_product'))
     if is_used:
+        ans = dict()
+        ans['id'] = product
+        ans['value'] = product
+        ans = json.dumps(ans)
         product += 1 
-        red.set("product", product)
+        red.set("product", ans)
         red.set("is_new_product", str(True))
-        print("worker1 has public product: {}".format(product))
-        time.sleep(0.5)
+        print("worker1 has public product: {}".format(ans))
+        time.sleep(0.1)

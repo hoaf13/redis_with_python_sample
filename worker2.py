@@ -20,5 +20,5 @@ while True:
         taken_product = red.get('product_worker2')
         print("worker2 is processing product: {}".format(taken_product))
         red.set('is_ready_worker2', str(False)) # product has been processed
-        time.sleep(1)
+        time.sleep(0.7)
         

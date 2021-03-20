@@ -25,11 +25,13 @@ while True:
         is_ready_worker2 = str2bool(red.get('is_ready_worker2'))
         is_ready_worker3 = str2bool(red.get('is_ready_worker3'))
 
-        product = queue.pop(0)
-        if is_ready_worker2 == False: # previous product in worker2 was processed
+        
+        if is_ready_worker2 == False and len(queue) > 0: # previous product in worker2 was processed
+            product = queue.pop(0)
             red.set("is_ready_worker2",str(True)) 
             red.set("product_worker2", product)
         
-        if is_ready_worker3 == False: # previous product in worker3 was processed
-                red.set("is_ready_worker3",str(True)) 
-                red.set("product_worker3", product)
+        if is_ready_worker3 == False and len(queue) > 0: # previous product in worker3 was processed
+            product = queue.pop(0)
+            red.set("is_ready_worker3",str(True)) 
+            red.set("product_worker3", product)
